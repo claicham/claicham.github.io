@@ -48,7 +48,6 @@ $(function() {
   // When size is submitted by the user, call makeGrid()
 
   function makeGrid(height, width) {
-
     canvas.empty();
 
     for (let x = 1; x <= height; x++) {
@@ -188,11 +187,21 @@ $(function() {
 
   // event listeners
   $('#input_width').change( function() {
-    width = $(this).val();
+    if ($(this).val() > 40) {
+      width = 40;
+      $(this).val(40)
+    } else {
+      width = $(this).val();
+    }
   });
 
   $('#input_height').change( function() {
-    height = $(this).val();
+    if ($(this).val() > 40) {
+      height = 40;
+      $(this).val(40)
+    } else {
+      height = $(this).val();
+    }
   });
 
   // canvas color
