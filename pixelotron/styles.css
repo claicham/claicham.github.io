@@ -390,6 +390,53 @@ template {
 [hidden] {
   display: none; }
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 @font-face {
   font-family: 'icons';
   src: url("fonts/icons.ttf?onvcw2") format("truetype"), url("fonts/icons.woff?onvcw2") format("woff"), url("fonts/icons.svg?onvcw2#icons") format("svg");
@@ -726,11 +773,61 @@ header {
       width: 100%;
       margin-bottom: 8px; }
 
-.utilities .load-canvases {
-  float: left;
-  margin: 0;
+.utilities .saved-canvases {
+  float: right;
+  margin: -32px 0 0;
   padding: 0;
   list-style: none;
-  font-size: 14px; }
+  font-size: 14px;
+  line-height: 24px;
+  position: relative;
+  text-transform: uppercase; }
+  .utilities .saved-canvases li {
+    background-color: #6c6c68;
+    padding: 8px 16px;
+    cursor: pointer; }
+    .utilities .saved-canvases li ul {
+      display: none;
+      width: 224px;
+      position: absolute;
+      background-color: #6c6c68;
+      right: 0;
+      top: 40px; }
+      .utilities .saved-canvases li ul li {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid #2d2d2a;
+        position: relative; }
+        .utilities .saved-canvases li ul li:hover {
+          background-color: #2d2d2a; }
+        .utilities .saved-canvases li ul li > span {
+          display: block;
+          max-width: calc(100% - 20px);
+          text-overflow: ellipsis;
+          overflow: hidden; }
+        .utilities .saved-canvases li ul li .remove {
+          text-indent: -1000px;
+          display: block;
+          width: 0;
+          height: 0;
+          float: right; }
+          .utilities .saved-canvases li ul li .remove:before {
+            content: 'x';
+            text-indent: 0;
+            font-size: 12px;
+            height: 16px;
+            width: 16px;
+            position: absolute;
+            right: 8px;
+            background-color: #959e9f;
+            color: #2d2d2a;
+            line-height: 16px;
+            text-align: center;
+            font-weight: bold;
+            top: 10px;
+            border-radius: 2px; }
+    .utilities .saved-canvases li:hover ul {
+      display: block; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -51,9 +51,9 @@ $(function() {
 
     canvas.empty();
 
-    for (var x = 1; x <= height; x++) {
-      var row = $('<tr></tr>');
-      for (var y = 1; y <= width; y++) {
+    for (let x = 1; x <= height; x++) {
+      let row = $('<tr></tr>');
+      for (let y = 1; y <= width; y++) {
         row.append('<td></td>');
       }
       canvas.append(row);
@@ -69,17 +69,6 @@ $(function() {
       } else {
         $(pixel).css('background-color', color);
       }
-  };
-
-  function addPalette() {
-    palette.find('li').each( function() {
-      var colorSwatch = $(this).attr('data-color');
-      $(this).css('background-color', colorSwatch);
-      if (colorSwatch === color) {
-        $(this).addClass('active');
-      }
-    });
-    updateCurrentSwatch();
   };
 
   function colorGridLines(lineColor) {
@@ -127,10 +116,11 @@ $(function() {
 
   // create the list of saved items from local storage for loading/removing
   function createCanvasList() {
+    $('.saved-canvases').show();
     $(list).empty();
-    for (var i = savedCanvases.length - 1; i >= 0; i--) {
+    for (let i = savedCanvases.length - 1; i >= 0; i--) {
       let itemName = savedCanvases[i].name;
-      $(list).append(`<li data-item="${i}"><span>${itemName}</span> <span class="remove">Delete</span></li>`);
+      $(list).append(`<li data-item="${i}"><span title="${itemName}">${itemName}</span> <span class="remove" title="Remove ${itemName}">Delete</span></li>`);
     }
   }
 
@@ -171,11 +161,16 @@ $(function() {
     updateUI();
   }
 
+  function clearCanvas() {
+    makeGrid(width, height);
+  }
+
   // remove canvas from local storage
   function removeCanvas(i) {
     if (savedCanvases.length <= 1) {
       savedCanvases.splice(i, 1);
       freshCanvas();
+      $('.saved-canvases').hide();
     } else {
       savedCanvases.splice(i, 1);
       loadCanvas(savedCanvases.length - 1);
@@ -226,16 +221,9 @@ $(function() {
     }
   });
 
-  // custom colour picker
+  // colour picker
   $('#colorPicker').change(function() {
     color = $(this).val();
-    updateCurrentSwatch();
-  });
-
-  // palette colour picker
-  palette.on('click', 'li', function(e) {
-    color = $(e.target).attr('data-color');
-    updateCurrentSwatch();
   });
 
   // watch canvas for drawing
@@ -285,6 +273,11 @@ $(function() {
     saveCanvas();
   });
 
+  // clear canvas event
+  $('#clearCanvas').click(function() {
+    clearCanvas();
+  });
+
   // list of saved items listener
   $(list).on('click', 'li span', function(e) {
     const i = $(this).parent('li').attr('data-item');
@@ -309,8 +302,6 @@ $(function() {
   } else {
     makeGrid(16, 16);
     updateUI();
+    $('.saved-canvases').hide();
   }
-  
-  // create the palette
-  addPalette();
 });

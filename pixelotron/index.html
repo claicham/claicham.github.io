@@ -16,14 +16,17 @@
         <section class="utilities">
             <div class="save-doc">
                 <label for="saveName">Name</label>
-                <input type="text" id="saveName" name="title">
+                <input type="text" id="saveName" name="title" maxlength="20">
                 
                 <a href="#" id="saveCanvas" class="icon-button">
                     <span class="icon icon-only icon-save"></span>
                 </a>
             </div>
-            <ul class="load-canvases">
-            </ul>
+            <ul class="saved-canvases">
+                <li>Saved drawings
+                    <ul class="load-canvases">
+                    </ul>
+                </li>
         </section>
     </header>
     <article>
@@ -59,6 +62,8 @@
                 <input type="button" id="hideGrid" value="Hide grid">
 
                 <input id="newCanvas" type="button" value="New"/>
+
+                <input id="clearCanvas" type="button" value="Clear" />
             </div>                                           
         </section>
 
