@@ -12,10 +12,9 @@ $(function() {
   brush = true;
   drawing = false;
   linesVisible = true;
-  canvasColor = '#fff'
+  canvasColor = '#fff';
   const canvas = $('#pixel_canvas');
   const button = $('#button');
-  const palette = $('.palette');
   const eraseElement = $('.eraser');
   const brushElement = $('.brush');
   const hideGridLines = $('#hideGrid');
@@ -68,14 +67,10 @@ $(function() {
       } else {
         $(pixel).css('background-color', color);
       }
-  };
+  }
 
   function colorGridLines(lineColor) {
     canvas.css('color', lineColor);
-  }
-
-  function updateCurrentSwatch() {
-    $('.selected-color').css('background-color', color);
   }
 
   // save canvas
@@ -91,7 +86,7 @@ $(function() {
         canvasColor: canvasColor,
         drawing: drawing
       }
-    }
+    };
 
     let i = savedCanvases.length;
 
@@ -189,7 +184,7 @@ $(function() {
   $('#input_width').change( function() {
     if ($(this).val() > 40) {
       width = 40;
-      $(this).val(40)
+      $(this).val(40);
     } else {
       width = $(this).val();
     }
@@ -198,7 +193,7 @@ $(function() {
   $('#input_height').change( function() {
     if ($(this).val() > 40) {
       height = 40;
-      $(this).val(40)
+      $(this).val(40);
     } else {
       height = $(this).val();
     }
@@ -254,7 +249,7 @@ $(function() {
   // save name change listener
   $('#saveName').change(function() {
     canvasSaveName = $(this).val();
-  })
+  });
 
 
   // keyboard events for paint and erase
