@@ -1,5 +1,4 @@
-// Select color input
-// Select size input
+// pixel art maker project
 $(function() {
   
   let height, width, color, erase, brush, gridLines, drawing, linesVisible, canvasColor;
@@ -12,7 +11,7 @@ $(function() {
   brush = true;
   drawing = false;
   linesVisible = true;
-  canvasColor = '#fff';
+  canvasColor = '#f3f3f3';
   const canvas = $('#pixel_canvas');
   const button = $('#button');
   const eraseElement = $('.eraser');
@@ -233,12 +232,13 @@ $(function() {
   // watch canvas for drawing
   canvas.on('mousedown', 'td', function(e) {
     e.preventDefault();
+
     drawing = true;
     paint(e.target);
     $("#colorPicker").spectrum("hide");
   });
 
-  canvas.on('mouseup', 'td', function(e) {
+  canvas.on('mouseup', 'td', function() {
     drawing = false;
   });
 
@@ -273,18 +273,14 @@ $(function() {
   });
 
   // save canvas event
-  $('#saveCanvas').click(function() {
-    saveCanvas();
-  });
+  $('#saveCanvas').click(saveCanvas);
 
   // clear canvas event
-  $('#clearCanvas').click(function() {
-    clearCanvas();
-  });
+  $('#clearCanvas').click(clearCanvas);
 
   // list of saved items listener
   $(list).on('click', 'li span', function(e) {
-    const i = $(this).parent('li').attr('data-item');
+    const i = $(this).parent('li').data('item');
 
     if ($(e.target).hasClass('remove')) {
       removeCanvas(i);
@@ -294,8 +290,24 @@ $(function() {
   });
 
   // create new document
-  $('#newCanvas').click( function() {
-    freshCanvas();
+  $('#newCanvas').click(freshCanvas);
+
+  // zoom
+  $('.zoom').on('click', 'li', function() {
+    const direction = $(this).data('zoom');
+    let zoomWidth = Number(canvas.find('td').css('width').slice(0, -2));
+    console.log(zoomWidth);
+
+    if (direction === 'in' && zoomWidth <= 35) {
+      canvas.find('td').css({'width': zoomWidth + 5, 'height': zoomWidth + 5});
+      zoomWidth + 5;
+    } else if (direction === 'out' && zoomWidth > 5) {
+      canvas.find('td').css({'width': zoomWidth - 5, 'height': zoomWidth - 5});
+      zoomWidth - 5;
+    } else if (direction === 'out' && zoomWidth === 5) {
+      canvas.find('td').css({'width': '1px', 'height': '1px'});
+      zoomWidth = 5;
+    }
   });
 
 

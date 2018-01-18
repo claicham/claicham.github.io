@@ -535,7 +535,8 @@ article:after {
   width: calc(100% - 144px);
   float: left;
   margin-top: 24px;
-  margin-left: 24px; }
+  margin-left: 24px;
+  position: relative; }
 
 table {
   color: #b5b5b5;
@@ -549,9 +550,6 @@ td {
 table {
   border-collapse: collapse;
   margin: 0 auto; }
-
-tr {
-  height: 20px; }
 
 td {
   width: 20px;
@@ -830,5 +828,23 @@ header {
             border-radius: 2px; }
     .utilities .saved-canvases li:hover ul {
       display: block; }
+
+.zoom {
+  position: absolute;
+  right: 16px;
+  top: 16px; }
+  .zoom li {
+    display: block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: #2d2d2a;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 20px;
+    user-select: none;
+    cursor: pointer; }
+    .zoom li:hover {
+      background-color: #6c6c68; }
 
 /*# sourceMappingURL=styles.css.map */
