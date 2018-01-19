@@ -584,7 +584,9 @@ header {
   padding: 8px 24px;
   border-bottom: 1px solid #333;
   display: flex;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2; }
   header h1 {
     text-transform: uppercase;
     line-height: 1;
