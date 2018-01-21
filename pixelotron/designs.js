@@ -155,7 +155,7 @@ $(function() {
   }
 
   function clearCanvas() {
-    makeGrid(width, height);
+    canvas.find('td').css('background-color', '');
   }
 
   // remove canvas from local storage
@@ -236,14 +236,21 @@ $(function() {
     drawing = true;
     paint(e.target);
     $("#colorPicker").spectrum("hide");
+    console.log(drawing);
   });
 
   canvas.on('mouseup', 'td', function() {
+    drawing = false;
+    console.log(drawing);
+  });
+
+  canvas.mouseleave( function() {
     drawing = false;
   });
 
   canvas.on('mousemove', 'td', function(e) {
     paint(e.target);
+    console.log(drawing);
   });
 
   // save name change listener
@@ -298,15 +305,16 @@ $(function() {
     let zoomWidth = Number(canvas.find('td').css('width').slice(0, -2));
     console.log(zoomWidth);
 
-    if (direction === 'in' && zoomWidth <= 35) {
-      canvas.find('td').css({'width': zoomWidth + 5, 'height': zoomWidth + 5});
-      zoomWidth + 5;
-    } else if (direction === 'out' && zoomWidth > 5) {
-      canvas.find('td').css({'width': zoomWidth - 5, 'height': zoomWidth - 5});
-      zoomWidth - 5;
-    } else if (direction === 'out' && zoomWidth === 5) {
-      canvas.find('td').css({'width': '1px', 'height': '1px'});
-      zoomWidth = 5;
+    if (zoomWidth === 1) {
+      canvas.find('td').css({'width': zoomWidth + 4, 'height': zoomWidth + 4});
+    } else {
+      if (direction === 'in' && zoomWidth <= 35) {
+        canvas.find('td').css({'width': zoomWidth + 5, 'height': zoomWidth + 5});
+      } else if (direction === 'out' && zoomWidth > 5) {
+        canvas.find('td').css({'width': zoomWidth - 5, 'height': zoomWidth - 5});
+      } else if (direction === 'out' && zoomWidth === 5) {
+        canvas.find('td').css({'width': '1px', 'height': '1px'});
+      }
     }
   });
 
