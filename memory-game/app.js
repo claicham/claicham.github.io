@@ -65,11 +65,14 @@ document.addEventListener('DOMContentLoaded', function () {
     setup.classList.add('hide');
     gameArea.classList.remove('hide');
     gameArea.classList.add(`level-${currentDifficulty}`);
+    gameArea.style.height = `${window.innerHeight - 104}px`;
+    setup.style.height = `${window.innerHeight - 104}px`;
+    results.style.height = `${window.innerHeight - 104}px`;
 
     createTiles(difficultyAsNum);
 
     matchTiles();
-    clearTimer();
+    clearTimer(true);
     gameTimer();
   }
 
@@ -79,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tiles.addEventListener('click', function (e) {
       if (!e.target.classList.contains('selected') || (!e.target.classList.contains('selected') && !e.target.classList.contains('matched'))) {
-        e.target.classList.add('selected');
+        e.target.classList.add('selected', 'flip');
         matches.push([e.target.dataset.item, e.target.dataset.unique]);
 
         if (matches.length === 2) {
@@ -94,15 +97,18 @@ document.addEventListener('DOMContentLoaded', function () {
       if (matches[0][0] === matches[1][0]) {
         const matched = document.querySelectorAll(`[data-item='${matches[0][0]}']`);
         for (let i = 0; i < matched.length; i++) {
-          matched[i].classList.add('matched');
+          window.setTimeout(function () {
+            matched[i].classList.add('matched');
+          }, 400);
         }
         matchedItems += 1;
 
         if (matchedItems === (difficultyAsNum / 2)) {
+          clearTimer(false);
+          console.log(timer);
           window.setTimeout(function () {
             completeGame();
-            clearTimer();
-          }, 1000);
+          }, 1400);
         }
 
       } else {
@@ -110,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const item2 = document.querySelector(`[data-unique='${matches[1][1]}']`);
 
         window.setTimeout(function () {
-          item1.classList.remove('selected');
-          item2.classList.remove('selected');
+          item1.classList.remove('selected', 'flip');
+          item2.classList.remove('selected', 'flip');
         }, 500);
       }
 
@@ -133,8 +139,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const resultsText = document.querySelector('.results-text');
     const markup = `You completed the game in ${movesTaken} moves with a time of ${timer} seconds!`;
-
+    rateUser();
     resultsText.innerHTML = markup;
+  }
+
+  function rateUser() {
+    const stars = document.querySelector('.stars');
+    let multiplier = difficultyAsNum / 4;
+    if (movesTaken <= (difficultyAsNum / 2) + multiplier) {
+      stars.innerHTML = '<span class="three"></span>';
+    } else if (movesTaken <= (difficultyAsNum / 2) + (multiplier * 2)) {
+      stars.innerHTML = '<span class="two"></span>';
+    } else if (movesTaken <= (difficultyAsNum / 2) + (multiplier * 3)) {
+      stars.innerHTML = '<span class="one"></span>';
+    } else {
+      stars.innerHTML = '';
+    }
   }
 
   function gameTimer() {
@@ -144,13 +164,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000);
   }
 
-  function clearTimer() {
+  function clearTimer(clearCurrentTime) {
     clearInterval(seconds);
-    timer = 0;
+    if (clearCurrentTime) {
+      timer = 0;
+    }
   }
 
   function updateTimerText() {
-    timeText.innerHTML = `Time: ${timer}s`;
+    timeText.innerHTML = `Timer: ${timer}s`;
   }
 
   function reset() {
