@@ -23,11 +23,11 @@
           <tbody>
             <tr ng-repeat="match in teamFixturesList">
               <td>{{match.date | date: 'dd MMM yy H:mm'}}</td>
-              <td>{{match.homeTeamName}}</td>
+              <td><a href="#/league/team/{{ match._links.homeTeam.href | teamUrl }}">{{match.homeTeamName}}</a></td>
               <td class="right">{{match.result.goalsHomeTeam | score}}</td>
               <td class="center">-</td>
               <td>{{match.result.goalsAwayTeam | score}}</td>
-              <td>{{match.awayTeamName}}</td>
+              <td><a href="#/league/team/{{ match._links.awayTeam.href | teamUrl }}">{{match.awayTeamName}}</a></td>
             </tr>
           </tbody>
         </table>

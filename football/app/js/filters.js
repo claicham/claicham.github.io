@@ -12,7 +12,7 @@ angular.module('footballAppFilters', []).
   }).
   filter('addFlag', function() {
     return function(flag) {
-      var flagCorrect = flag == 'Scottland' ? 'Scotland' : flag;
+      var flagCorrect = flag == 'Scottland' ? 'Scotland' : flag == 'DR Congo' ? 'democratic-republic-of-the-congo' : flag;
       var country = flagCorrect.toLowerCase().replace(' ',"-").replace("'",""); 
       return country;
     };
