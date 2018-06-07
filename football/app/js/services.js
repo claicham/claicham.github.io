@@ -7,7 +7,7 @@ angular.module('footballApp.services', []).
       return $http({
         method: 'GET',
         headers: { 'X-Auth-Token': '7880a62f2e154773958ac8801365554d' },
-        url: 'http://api.football-data.org/v1/competitions/445/leagueTable'
+        url: 'https://api.football-data.org/v1/competitions/445/leagueTable'
       });
     }
 
@@ -15,7 +15,7 @@ angular.module('footballApp.services', []).
       return $http({
         method: 'GET',
         headers: { 'X-Auth-Token': '7880a62f2e154773958ac8801365554d' },
-        url: 'http://api.football-data.org/v1/competitions/445/fixtures?timeFrame=p7'
+        url: 'https://api.football-data.org/v1/competitions/445/fixtures?timeFrame=p7'
       });
     }
 
@@ -23,7 +23,7 @@ angular.module('footballApp.services', []).
       return $http({
         method: 'GET',
         headers: { 'X-Auth-Token': '7880a62f2e154773958ac8801365554d' },
-        url: 'http://api.football-data.org/v1/competitions/445/fixtures?timeFrame=n8'
+        url: 'https://api.football-data.org/v1/competitions/445/fixtures?timeFrame=n8'
       });
     }
 
@@ -31,7 +31,7 @@ angular.module('footballApp.services', []).
       return $http({
         method: 'GET',
         headers: { 'X-Auth-Token': '7880a62f2e154773958ac8801365554d' }, 
-        url: 'http://api.football-data.org/v1/competitions/teams/'+ id + '/'
+        url: 'https://api.football-data.org/v1/competitions/teams/'+ id + '/'
       });
     }
     
@@ -39,7 +39,7 @@ angular.module('footballApp.services', []).
       return $http({
         method: 'GET',
         headers: { 'X-Auth-Token': '7880a62f2e154773958ac8801365554d' }, 
-        url: 'http://api.football-data.org/v1/competitions/teams/'+ id + '/fixtures'
+        url: 'https://api.football-data.org/v1/competitions/teams/'+ id + '/fixtures'
       });
     }
     
@@ -47,7 +47,7 @@ angular.module('footballApp.services', []).
       return $http({
         method: 'GET',
         headers: { 'X-Auth-Token': '7880a62f2e154773958ac8801365554d' }, 
-        url: 'http://api.football-data.org/v1/competitions/teams/'+ id + '/players'
+        url: 'https://api.football-data.org/v1/competitions/teams/'+ id + '/players'
       });
     }
 
