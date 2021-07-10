@@ -1,3 +1,11 @@
 :root {
+  color-scheme: light;
   --global_page-background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --global_page-background: black;
+  }
 }

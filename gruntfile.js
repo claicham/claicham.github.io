@@ -1,6 +1,5 @@
 const Fiber = require('fibers');
 const sass = require('sass');
-const postcssNormalize = require('postcss-normalize');
 
 module.exports = function (grunt) {
 
@@ -54,6 +53,5 @@ module.exports = function (grunt) {
 
   // icons
   grunt.registerTask('scss', ['sass:dist', 'postcss:prefixer']);
-  grunt.registerTask('watch', ['watch:sass']);
-
+  grunt.registerTask('default', ['sass:dist', 'watch:sass', 'postcss:prefixer']);
 };
