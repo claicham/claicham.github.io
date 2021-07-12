@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
-    "vendor-copy": "2.0.0"
+    "vendor-copy": "3.0.1"
   },
   "vendorCopy": [
     {
