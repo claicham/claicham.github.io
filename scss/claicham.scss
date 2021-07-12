@@ -6,9 +6,37 @@ body {
   background-color: var(--global_page-background);
 }
 
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  scroll-snap-type: y mandatory;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  flex-wrap: wrap;
+}
+
 article {
   display: grid;
   width: 100vw;
   height: 100vh;
   place-items: center;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+
+  &:nth-child(1n) {
+    background-color: var(--global_palette-blue);
+  }
+
+  &:nth-child(2n) {
+    background-color: var(--global_palette-pink);
+  }
+
+  &:nth-child(3n) {
+    background-color: var(--global_palette-yellow);
+  }
+
+  &:nth-child(4n) {
+    background-color: var(--global_palette-black);
+  }
 }
